@@ -5,6 +5,11 @@ class OnBoardingView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return const Scaffold(
+      backgroundColor: Colors.white,
+      body: Center(
+        child: Text('Welcome to on broading'),
+      ),
+    );
   }
 }
