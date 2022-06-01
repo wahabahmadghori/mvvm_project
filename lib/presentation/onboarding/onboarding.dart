@@ -53,10 +53,15 @@ class _OnBoardingViewState extends State<OnBoardingView> {
           }),
       bottomSheet: Container(
         height: AppSize.s100,
-        child: Column(children: const [
+        child: Column(children: [
           Align(
             alignment: Alignment.bottomRight,
-            child: Text(AppStrings.skip),
+            child: TextButton(
+                onPressed: () {},
+                child: const Text(
+                  AppStrings.skip,
+                  textAlign: TextAlign.end,
+                )),
           )
         ]),
       ),
