@@ -57,15 +57,62 @@ class _OnBoardingViewState extends State<OnBoardingView> {
           Align(
             alignment: Alignment.bottomRight,
             child: TextButton(
-                onPressed: () {},
-                child: const Text(
-                  AppStrings.skip,
-                  textAlign: TextAlign.end,
-                )),
-          )
+              onPressed: () {},
+              child: const Text(
+                AppStrings.skip,
+                textAlign: TextAlign.end,
+              ),
+            ),
+          ),
+          _getBottomSheetWidget(),
         ]),
       ),
     );
+  }
+
+  Widget _getBottomSheetWidget() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(AppPadding.p14),
+          child: GestureDetector(
+            child: SizedBox(
+              height: AppSize.s20,
+              width: AppSize.s20,
+              child: SvgPicture.asset(ImageAssets.leftArrowIc),
+            ),
+            onTap: () {},
+          ),
+        ),
+        Row(
+          children: [
+            for (int i = 0; i < _list.length; i++)
+              Padding(
+                padding: const EdgeInsets.all(AppPadding.p8),
+                child: _getProperCircle(i),
+              ),
+          ],
+        ),
+        Padding(
+          padding: const EdgeInsets.all(AppPadding.p14),
+          child: GestureDetector(
+            child: SizedBox(
+              height: AppSize.s20,
+              width: AppSize.s20,
+              child: SvgPicture.asset(ImageAssets.rightArrowIc),
+            ),
+            onTap: () {},
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _getProperCircle(int index) {
+    return index == _currentIndex
+        ? SvgPicture.asset(ImageAssets.hollowCircleIc)
+        : SvgPicture.asset(ImageAssets.solidCircleIc);
   }
 }
 
