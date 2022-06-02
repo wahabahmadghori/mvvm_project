@@ -4,6 +4,7 @@ import 'package:mvvmproject/presentation/resources/color_manager.dart';
 import 'package:mvvmproject/presentation/resources/values_manager.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../resources/assets_manager.dart';
+import '../resources/routes_manager.dart';
 import '../resources/strings_manager.dart';
 
 class OnBoardingView extends StatefulWidget {
@@ -34,7 +35,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
       backgroundColor: ColorManager.white,
       appBar: AppBar(
         backgroundColor: ColorManager.white,
-        elevation: AppSize.s1_5,
+        elevation: AppSize.s0,
         systemOverlayStyle: SystemUiOverlayStyle(
             statusBarColor: ColorManager.white,
             statusBarBrightness: Brightness.dark,
@@ -57,14 +58,18 @@ class _OnBoardingViewState extends State<OnBoardingView> {
           Align(
             alignment: Alignment.bottomRight,
             child: TextButton(
-              onPressed: () {},
-              child: const Text(
+              onPressed: () {
+                Navigator.pushReplacementNamed(context, Routes.loginRoute);
+              },
+              child: Text(
                 AppStrings.skip,
+                style: Theme.of(context).textTheme.subtitle2,
                 textAlign: TextAlign.end,
               ),
             ),
           ),
-          _getBottomSheetWidget(),
+          Container(
+              color: ColorManager.primary, child: _getBottomSheetWidget()),
         ]),
       ),
     );
