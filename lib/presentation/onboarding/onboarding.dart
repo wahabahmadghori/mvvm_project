@@ -82,7 +82,12 @@ class _OnBoardingViewState extends State<OnBoardingView> {
               width: AppSize.s20,
               child: SvgPicture.asset(ImageAssets.leftArrowIc),
             ),
-            onTap: () {},
+            onTap: () {
+              _pageController.animateToPage(_getPrevPage(),
+                  duration:
+                      const Duration(microseconds: DurationConstants.d300),
+                  curve: Curves.bounceInOut);
+            },
           ),
         ),
         Row(
@@ -102,7 +107,12 @@ class _OnBoardingViewState extends State<OnBoardingView> {
               width: AppSize.s20,
               child: SvgPicture.asset(ImageAssets.rightArrowIc),
             ),
-            onTap: () {},
+            onTap: () {
+              _pageController.animateToPage(_getNextPage(),
+                  duration:
+                      const Duration(microseconds: DurationConstants.d300),
+                  curve: Curves.bounceInOut);
+            },
           ),
         ),
       ],
@@ -113,6 +123,22 @@ class _OnBoardingViewState extends State<OnBoardingView> {
     return index == _currentIndex
         ? SvgPicture.asset(ImageAssets.hollowCircleIc)
         : SvgPicture.asset(ImageAssets.solidCircleIc);
+  }
+
+  int _getPrevPage() {
+    int _prevIndex = _currentIndex--;
+    if (_prevIndex == -1) {
+      _currentIndex = _list.length - 1;
+    }
+    return _currentIndex;
+  }
+
+  int _getNextPage() {
+    int _nextIndex = _currentIndex++;
+    if (_nextIndex == _list.length) {
+      _currentIndex = 0;
+    }
+    return _currentIndex;
   }
 }
 
