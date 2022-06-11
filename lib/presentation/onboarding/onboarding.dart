@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:mvvmproject/presentation/resources/color_manager.dart';
 import 'package:mvvmproject/presentation/resources/values_manager.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import '../../domain/model.dart';
 import '../resources/assets_manager.dart';
 import '../resources/routes_manager.dart';
 import '../resources/strings_manager.dart';
@@ -145,14 +146,6 @@ class _OnBoardingViewState extends State<OnBoardingView> {
     }
     return _currentIndex;
   }
-}
-
-class SliderObject {
-  String title;
-  String subTitle;
-  String image;
-
-  SliderObject(this.title, this.subTitle, this.image);
 }
 
 class OnBoardingPage extends StatelessWidget {
