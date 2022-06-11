@@ -25,21 +25,21 @@ class OnBoardingViewModel extends BaseViewModel
   }
 
   @override
-  void goNext() {
+  int goNext() {
     int _nextIndex = _currentIndex++;
     if (_nextIndex == _list.length) {
       _currentIndex = 0;
     }
-    _postDataToView();
+    return _currentIndex;
   }
 
   @override
-  void goPrevious() {
+  int goPrevious() {
     int _prevIndex = _currentIndex--;
     if (_prevIndex == -1) {
       _currentIndex = _list.length - 1;
     }
-    _postDataToView();
+    return _currentIndex;
   }
 
   @override
@@ -73,10 +73,10 @@ class OnBoardingViewModel extends BaseViewModel
 }
 
 class SliderViewObject {
-  SliderObject _sliderObject;
+  SliderObject sliderObject;
   int numOfSliders;
   int currentIndex;
-  SliderViewObject(this._sliderObject, this.numOfSliders, this.currentIndex);
+  SliderViewObject(this.sliderObject, this.numOfSliders, this.currentIndex);
 }
 
 abstract class OnBoardingViewModelInput {
