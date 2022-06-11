@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:mvvmproject/presentation/onboarding/onboarding_viewmodel.dart';
 import 'package:mvvmproject/presentation/resources/color_manager.dart';
 import 'package:mvvmproject/presentation/resources/values_manager.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -15,13 +16,29 @@ class OnBoardingView extends StatefulWidget {
 
 class _OnBoardingViewState extends State<OnBoardingView> {
   final PageController _pageController = PageController(initialPage: 0);
+  final OnBoardingViewModel _viewModel = OnBoardingViewModel();
+  _bind() {
+    _viewModel.start();
+  }
+
+  @override
+  void initState() {
+    _bind();
+    super.initState();
+  }
+
   @override
   void dispose() {
+    _viewModel.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    return _getContentWidget();
+  }
+
+  Widget _getContentWidget() {
     return Scaffold(
       backgroundColor: ColorManager.white,
       appBar: AppBar(
@@ -119,22 +136,6 @@ class _OnBoardingViewState extends State<OnBoardingView> {
     return index == _currentIndex
         ? SvgPicture.asset(ImageAssets.hollowCircleIc)
         : SvgPicture.asset(ImageAssets.solidCircleIc);
-  }
-
-  int _getPrevPage() {
-    int _prevIndex = _currentIndex--;
-    if (_prevIndex == -1) {
-      _currentIndex = _list.length - 1;
-    }
-    return _currentIndex;
-  }
-
-  int _getNextPage() {
-    int _nextIndex = _currentIndex++;
-    if (_nextIndex == _list.length) {
-      _currentIndex = 0;
-    }
-    return _currentIndex;
   }
 }
 
