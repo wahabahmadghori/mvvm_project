@@ -25,13 +25,28 @@ class OnBoardingViewModel extends BaseViewModel
   }
 
   @override
-  void goNext() {}
+  void goNext() {
+    int _nextIndex = _currentIndex++;
+    if (_nextIndex == _list.length) {
+      _currentIndex = 0;
+    }
+    _postDataToView();
+  }
 
   @override
-  void goPrevious() {}
+  void goPrevious() {
+    int _prevIndex = _currentIndex--;
+    if (_prevIndex == -1) {
+      _currentIndex = _list.length - 1;
+    }
+    _postDataToView();
+  }
 
   @override
-  void onPageChanged(int index) {}
+  void onPageChanged(int index) {
+    _currentIndex = index;
+    _postDataToView();
+  }
 
   @override
   Sink get inputSliderViewObject => _streamController.sink;
